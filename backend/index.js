@@ -1,23 +1,20 @@
 const express = require("express");
-// const { db } = require("./configs/db.configs");
-
+const cors = require("cors");
 const { connectToMongoDB } = require("./configs/mongoDb.config");
 
 const app = express();
+app.use(cors());
 app.use(express.json());
+
+const authRoutes = require("./routes/auth.routes");
+app.use("/auth", authRoutes);
+const surveyRoutes = require("./routes/survey.routes");
+app.use("/survey", surveyRoutes);
 require("dotenv").config();
 
 app.get("/hello", (req, res) => {
   console.log("hello!!!");
 });
-
-// auth route
-// const authRoutes = require("./routes/auth.routes");
-// app.use("/auth", authRoutes);
-// to do routes
-// const todoRoutes = require("./routes/todo.routes");
-
-// app.use("/survey", todoRoutes);
 
 app.listen(8000, () => {
   console.log("listening");
