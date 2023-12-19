@@ -10,11 +10,10 @@ const authRoutes = require("./routes/auth.routes");
 app.use("/auth", authRoutes);
 const surveyRoutes = require("./routes/survey.routes");
 app.use("/survey", surveyRoutes);
-require("dotenv").config();
 
-app.get("/hello", (req, res) => {
-  console.log("hello!!!");
-});
+const profileRoutes = require("./routes/profile.routes");
+app.use("/profile", profileRoutes);
+require("dotenv").config();
 
 app.listen(8000, () => {
   console.log("listening");

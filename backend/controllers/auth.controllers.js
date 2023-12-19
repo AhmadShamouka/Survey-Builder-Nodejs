@@ -33,24 +33,29 @@ const login = async (req, res) => {
 
 const register = async (req, res) => {
   const { username, password, firstName, lastName, role_id } = req.body;
-  if ((!username || !password || !firstName || !lastName, !role_id)) {
-    res.status(400).send({ message: "all fields are required" });
-  }
+  const existingUser = await User.findOne({ username });
+  if (existingUser) {
+    res.status(400).send({ message: "Username taken" });
+  } else {
+    if ((!username || !password || !firstName || !lastName, !role_id)) {
+      res.status(400).send({ message: "all fields are required" });
+    }
 
-  try {
-    const user = new User({
-      username,
-      password,
-      firstName,
-      lastName,
-      role_id,
-    });
+    try {
+      const user = new User({
+        username,
+        password,
+        firstName,
+        lastName,
+        role_id,
+      });
 
-    await user.save();
+      await user.save();
 
-    res.status(200).send({ user });
-  } catch (e) {
-    res.status(500).send({ error: e });
+      res.status(200).send({ user });
+    } catch (e) {
+      res.status(500).send({ error: e });
+    }
   }
 };
 
