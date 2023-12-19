@@ -6,7 +6,7 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #ecf1f4; /* Light blue background color */
+  background-color: #ecf1f4;
 }
 
 .container {
@@ -14,7 +14,7 @@ body {
 }
 
 .signup-form {
-  background-color: #ffffff; /* White background color */
+  background-color: #ffffff;
   padding: 20px;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -22,7 +22,7 @@ body {
 
 h2 {
   text-align: center;
-  color: #3498db; /* Blue text color */
+  color: #3498db;
 }
 
 label {
@@ -30,7 +30,7 @@ label {
   margin-top: 10px;
   margin-bottom: 5px;
   font-weight: bold;
-  color: #3498db; /* Blue label color */
+  color: #3498db;
 }
 
 input {
@@ -38,14 +38,14 @@ input {
   padding: 8px;
   margin-bottom: 15px;
   box-sizing: border-box;
-  border: 1px solid #3498db; /* Blue border color */
+  border: 1px solid #3498db;
   border-radius: 4px;
 }
 
 button {
   width: 100%;
-  background-color: #3498db; /* Blue button background color */
-  color: #ffffff; /* White text color */
+  background-color: #3498db;
+  color: #ffffff;
   padding: 10px;
   border: none;
   border-radius: 4px;
@@ -53,5 +53,9 @@ button {
 }
 
 button:hover {
-  background-color: #2980b9; /* Darker blue on hover */
+  background-color: #2980b9;
+}
+.redError {
+  color: rgb(255, 255, 255);
+  background-color: red;
 }

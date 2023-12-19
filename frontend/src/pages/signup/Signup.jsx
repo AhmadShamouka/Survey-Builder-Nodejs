@@ -1,29 +1,43 @@
 import React, { useState } from "react";
 import "./style.css";
 import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
 const SignupForm = () => {
-  const [data, setData] = useState({
+  const navigate = useNavigate();
+  const [formdata, setFromdata] = useState({
     username: "",
     password: "",
     firstName: "",
     lastName: "",
     role_id: "",
   });
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleChange = (e) => {
-    setData({ ...data, [e.target.name]: e.target.value });
+    setFromdata({ ...formdata, [e.target.name]: e.target.value });
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(data);
+    console.log(formdata);
     try {
       const response = await axios.post(
         "http://localhost:8000/auth/register",
-        data
+        formdata
       );
-      console.log(response.data);
+      console.log(response.data.message);
+      navigate("/login");
     } catch (error) {
       console.error("Error during form submission:", error);
+      if (
+        error.response &&
+        error.response.data &&
+        error.response.data.message
+      ) {
+        setErrorMessage(error.response.data.message);
+      } else {
+        setErrorMessage("An error occurred during registration.");
+      }
+      console.log(errorMessage);
     }
   };
 
@@ -39,6 +53,7 @@ const SignupForm = () => {
           onChange={handleChange}
           required
         />
+        <label className="redError">{errorMessage}</label>
         <label htmlFor="password">Password:</label>
         <input
           type="password"
@@ -68,14 +83,14 @@ const SignupForm = () => {
 
         <label htmlFor="role_id">Role:</label>
         <select id="role_id" name="role_id" onChange={handleChange} required>
-          <option value="" disabled>
+          <option disabled selected>
             Select Role
           </option>
           <option value="1">Admin</option>
           <option value="2">User</option>
         </select>
-
         <button type="submit">Sign Up</button>
+        <Link to="/login">Already have account?</Link>
       </form>
     </div>
   );
