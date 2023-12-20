@@ -3,6 +3,6 @@ const { authMiddleware } = require("../middlewares/auth.middelware");
 const { addSurvey } = require("../controllers/survey.controllers");
 const router = express.Router();
 
-router.post("/new", authMiddleware, addSurvey);
+router.post("/new", addSurvey);
 
 module.exports = router;

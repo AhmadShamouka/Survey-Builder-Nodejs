@@ -7,18 +7,35 @@ const surveySchema = new mongoose.Schema(
       required: true,
       trim: true,
     },
-    question: {
-      type: String,
-      required: true,
-    },
-    answer: {
-      type: String,
-      required: true,
-    },
-    status: {
-      type: String,
-      required: true,
-    },
+    questions: [
+      {
+        id: {
+          type: String,
+          required: true,
+        },
+        questionName: {
+          type: String,
+          required: true,
+          trim: true,
+        },
+        questionType: {
+          type: String,
+          required: true,
+        },
+        answers: [
+          {
+            answerText: {
+              type: String,
+              required: true,
+            },
+            answerType: {
+              type: Boolean,
+              default: false,
+            },
+          },
+        ],
+      },
+    ],
     userId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
