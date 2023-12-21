@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./style.css";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 const Login = () => {
   const navigate = useNavigate();
   const [data, setData] = useState({
@@ -22,7 +22,7 @@ const Login = () => {
       console.log(response.data);
       const header = response.data.token;
       if (response.data.token) {
-        navigate(`/pp`, { state: { data: header } });
+        navigate(`/survey`, { state: { data: header } });
       }
     } catch (error) {
       console.error("Error during form submission:", error);
@@ -32,6 +32,9 @@ const Login = () => {
   return (
     <div className="container">
       <form className="login-form" onSubmit={handleSubmit}>
+        <Link className="home" to={"/"}>
+          Sign Up
+        </Link>
         <h2>Login</h2>
         <label htmlFor="username">Username:</label>
         <input

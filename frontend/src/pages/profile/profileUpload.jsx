@@ -1,7 +1,8 @@
 // ProfilePictureUpload.jsx
 import React, { useState } from "react";
 import axios from "axios";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
+import Navigation from "../../component/navigation";
 
 const ProfileUpload = () => {
   const location = useLocation();
@@ -39,6 +40,7 @@ const ProfileUpload = () => {
 
   return (
     <div>
+      <Navigation />
       <h2>Profile Picture Upload</h2>
       <form onSubmit={handleFormSubmit}>
         <label htmlFor="profilePicture">Select Profile Picture:</label>
@@ -51,6 +53,8 @@ const ProfileUpload = () => {
         />
         <button type="submit">Upload</button>
       </form>
+
+      <Link to="/">Log Out</Link>
     </div>
   );
 };

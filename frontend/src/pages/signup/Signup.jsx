@@ -90,7 +90,7 @@ const SignupForm = () => {
           <option value="2">User</option>
         </select>
         <button type="submit">Sign Up</button>
-        <Link to="/login">Already have account?</Link>
+        <Link to="/login">Already have account? Sign</Link>
       </form>
     </div>
   );
