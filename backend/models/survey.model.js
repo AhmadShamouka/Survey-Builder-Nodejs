@@ -9,10 +9,6 @@ const surveySchema = new mongoose.Schema(
     },
     questions: [
       {
-        id: {
-          type: String,
-          required: true,
-        },
         questionName: {
           type: String,
           required: true,
