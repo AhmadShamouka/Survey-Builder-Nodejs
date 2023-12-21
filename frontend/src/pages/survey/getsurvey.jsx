@@ -1,20 +1,28 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./styles.css";
 import ProfileIcon from "../../component/proflepage";
 import Navigation from "../../component/navigation";
 
 const GetSurvey = () => {
+  const navigate = useNavigate();
+  const token = localStorage.getItem("jwtToken");
+  const authorization = "Bearer " + token;
   const [surveys, setSurveys] = useState([]);
 
   useEffect(() => {
     const fetchSurveys = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:8000/survey/getSurvey"
+          "http://localhost:8000/survey/getSurvey",
+          {
+            headers: {
+              Authorization: authorization,
+            },
+          }
         );
 
-        // Assuming the response.data is an array of surveys
         setSurveys(response.data.surveyData);
         console.log(response.data);
       } catch (error) {
@@ -24,6 +32,10 @@ const GetSurvey = () => {
 
     fetchSurveys();
   }, []);
+
+  const UserSurvey = (surveyId) => {
+    navigate(`/getOne`, { state: { data: surveyId } });
+  };
 
   return (
     <section>
@@ -55,6 +67,9 @@ const GetSurvey = () => {
                 </div>
               </div>
             ))}
+            <div>
+              <button onClick={() => UserSurvey(survey._id)}>Start</button>
+            </div>
           </div>
         ))}
       </div>

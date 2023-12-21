@@ -10,7 +10,17 @@
 section {
   margin: 10px 0;
 }
-
+.survey-container .start {
+  left: 0;
+  position: relative;
+  width: 20%;
+}
+.flex {
+  display: flex;
+}
+.block {
+  display: block;
+}
 @media (min-width: 1068px) {
   .grid-container {
     grid-template-columns: 1fr 1fr;

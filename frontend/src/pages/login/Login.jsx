@@ -14,15 +14,24 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(data);
+
     try {
       const response = await axios.post(
         "http://localhost:8000/auth/login",
         data
       );
       console.log(response.data);
-      const header = response.data.token;
+
       if (response.data.token) {
-        navigate(`/survey`, { state: { data: header } });
+        const header = response.data.token;
+
+        localStorage.setItem("jwtToken", header);
+        console.log(localStorage);
+        if (response.data.user.role_id === 1) {
+          navigate(`/survey`);
+        } else {
+          navigate(`/get`);
+        }
       }
     } catch (error) {
       console.error("Error during form submission:", error);

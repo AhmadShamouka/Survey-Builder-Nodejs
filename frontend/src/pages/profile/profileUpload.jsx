@@ -5,8 +5,9 @@ import { useLocation, Link } from "react-router-dom";
 import Navigation from "../../component/navigation";
 
 const ProfileUpload = () => {
-  const location = useLocation();
-  const authorization = "Bearer " + location.state?.data;
+  const token = localStorage.getItem("jwtToken");
+
+  const authorization = "Bearer " + token;
 
   const [selectedFile, setSelectedFile] = useState(null);
   const handleFileChange = (event) => {
